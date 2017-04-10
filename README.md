@@ -8,6 +8,7 @@ On project build.gradle, add maven repository
 repositories {
     jcenter()
     maven{url "https://raw.githubusercontent.com/chen3/PropertyAndroid/mvn-repo/"}
+    maven{url "https://raw.githubusercontent.com/chen3/SignalSlotAndroid/mvn-repo/"}
 }
 ```
 On moudle build.gradle, add depend
