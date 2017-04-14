@@ -55,7 +55,6 @@ install {
                 packaging 'aar'
                 name libName
                 url siteUrl
-                artifactId 'property'
                 licenses {
                     license {
                         name 'The MIT Software License'
