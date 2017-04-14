@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
 
 android {
     compileSdkVersion 25
@@ -9,7 +8,7 @@ android {
         minSdkVersion 8
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -29,16 +28,4 @@ dependencies {
     compile 'cn.qiditu:signalslot:1.0.1'
 }
 
-uploadArchives {
-    repositories.mavenDeployer {
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file('local.properties').newDataInputStream())
-        def mavenRepositoryPath = file(properties.getProperty('aar.Utils'))
-        repository(url: "file://${mavenRepositoryPath.absolutePath}")
-        pom.project {
-            groupId "cn.qiditu"
-            artifactId "property"
-            version "1.0.0"
-        }
-    }
-}
+apply from: "bintrayUpload.gradle"
