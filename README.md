@@ -7,7 +7,7 @@ On project build.gradle, add maven repository
 ```
 repositories {
     jcenter()
-    maven{url "'https://dl.bintray.com/qiditu/maven/'"}
+    maven{url "https://dl.bintray.com/qiditu/maven/"}
 }
 ```
 On moudle build.gradle, add depend
