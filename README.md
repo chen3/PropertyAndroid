@@ -1,4 +1,4 @@
-# SignalSlotAndroid
+# PropertyAndroid
 Porting [Property](https://github.com/chen3/Property) to Android
 
 # Usage
