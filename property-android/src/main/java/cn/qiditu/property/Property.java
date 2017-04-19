@@ -8,10 +8,14 @@ import cn.qiditu.signalslot.signals.Signal1;
 @SuppressWarnings("WeakerAccess")
 public class Property<T> {
 
-    T value;
+    T value = null;
 
     @SuppressWarnings("unused")
-    public Property(@NonNull T value) {
+    public Property() {
+    }
+
+    @SuppressWarnings("unused")
+    public Property(@Nullable T value) {
         this.value = value;
     }
 
