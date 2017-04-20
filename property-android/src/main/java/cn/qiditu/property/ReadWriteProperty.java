@@ -29,12 +29,19 @@ public class ReadWriteProperty<T> extends ReadProperty<T> implements IReadWriteP
         }
     }
 
-    private final IReadWriteProperty<Boolean> isBind = new ReadWriteProperty<>();
+    private final Lazy<IReadWriteProperty<Boolean>> isBind =
+            new Lazy<>(new Lazy.LazyFunc<IReadWriteProperty<Boolean>>() {
+        @NonNull
+        @Override
+        public IReadWriteProperty<Boolean> init() {
+            return new ReadWriteProperty<>(false);
+        }
+    });
 
     @NonNull
     @Override
     public IReadProperty<Boolean> isBind() {
-        return isBind;
+        return isBind.get();
     }
 
     private WeakReference<IReadProperty<T>> bindTarget = new WeakReference<>(null);
@@ -52,7 +59,7 @@ public class ReadWriteProperty<T> extends ReadProperty<T> implements IReadWriteP
         bindTarget = new WeakReference<>(property);
         this.set(property.get());
         property.changed().connect(slotSet);
-        isBind.set(true);
+        isBind.get().set(true);
     }
 
     @Override
@@ -63,7 +70,7 @@ public class ReadWriteProperty<T> extends ReadProperty<T> implements IReadWriteP
         }
         property.changed().disconnect(slotSet);
         bindTarget = new WeakReference<>(null);
-        isBind.set(false);
+        isBind.get().set(false);
     }
 
     @Override
