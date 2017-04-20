@@ -1,49 +1,46 @@
 package cn.qiditu.property;
 
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import cn.qiditu.signalslot.signals.Signal1;
 
 @SuppressWarnings("WeakerAccess")
-public class Property<T> {
-
-    T value = null;
-
-    @SuppressWarnings("unused")
-    public Property() {
-    }
-
-    @SuppressWarnings("unused")
-    public Property(@Nullable T value) {
-        this.value = value;
-    }
-
-    @SuppressWarnings("unused")
-    public Property(@NonNull WriteProperty<T> write) {
-        this(write, null);
-    }
+public class ReadProperty<T> implements IReadProperty<T> {
 
     @SuppressWarnings("WeakerAccess")
-    public Property(@NonNull WriteProperty<T> write, @Nullable T value) {
-        write.read = this;
+    protected T value = null;
+
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    public ReadProperty(@Nullable T value) {
         this.value = value;
     }
 
     @SuppressWarnings("WeakerAccess")
-    public final Signal1<T> changed = new Signal1<>(this);
+    protected final Signal1<T> changed = new Signal1<>(this);
+
+    @Override
+    public final Signal1<T> changed() {
+        return changed;
+    }
 
     @SuppressWarnings("WeakerAccess")
     @Nullable
+    @Override
     public T get() {
         return value;
     }
 
-    @SuppressWarnings("unused")
-    @Nullable
-    public T read() {
-        return get();
+
+    @Override
+    public final boolean isReadable() {
+        return true;
     }
+
+    @Override
+    public boolean isWritable() {
+        return false;
+    }
+
 
     @Override
     public String toString() {

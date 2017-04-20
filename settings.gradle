@@ -1,1 +1,1 @@
-include ':property-android'
+include ':property-android', ':sample'

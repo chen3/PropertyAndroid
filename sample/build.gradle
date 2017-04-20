@@ -1,14 +1,15 @@
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        minSdkVersion 8
+        applicationId "cn.qiditu.property.sample"
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
-        versionName "2.0.0"
+        versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -22,10 +23,11 @@ android {
 }
 
 dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'cn.qiditu:signalslot-android:1.0.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
+    compile project(':property-android')
 }
-
-apply from: "bintrayUpload.gradle"
