@@ -2,6 +2,7 @@ package cn.qiditu.property;
 
 import android.support.annotation.NonNull;
 
+@SuppressWarnings("WeakerAccess")
 public interface INonNullBind<T> {
 
     @SuppressWarnings("unused")
