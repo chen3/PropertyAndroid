@@ -1,5 +1,6 @@
 package cn.qiditu.property;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import cn.qiditu.signalslot.signals.Signal1;
@@ -18,6 +19,7 @@ public class ReadProperty<T> implements IReadProperty<T> {
     @SuppressWarnings("WeakerAccess")
     protected final Signal1<T> changed = new Signal1<>(this);
 
+    @NonNull
     @Override
     public final Signal1<T> changed() {
         return changed;
@@ -30,6 +32,11 @@ public class ReadProperty<T> implements IReadProperty<T> {
         return value;
     }
 
+    @NonNull
+    @Override
+    public T get(@NonNull T defaultValue) {
+        return value == null ? defaultValue : value;
+    }
 
     @Override
     public final boolean isReadable() {
